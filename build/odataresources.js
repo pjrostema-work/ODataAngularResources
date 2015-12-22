@@ -964,10 +964,14 @@ factory('$odataProvider', ['$odataOperators', '$odataBinaryOperation', '$odataPr
                   // Need to convert action.isArray to boolean in case it is undefined
                   // jshint -W018
                   if (angular.isArray(data) !== (!isSingleElement && !! action.isArray) && !forceSingleElement) {
-                    throw $resourceMinErr('badcfg',
-                      'Error in resource configuration for action `{0}`. Expected response to ' +
-                      'contain an {1} but got an {2} (Request: {3} {4})', name, (!isSingleElement && action.isArray) ? 'array' : 'object',
-                      angular.isArray(data) ? 'array' : 'object', httpConfig.method, httpConfig.url);
+                  	if (angular.isArray(data) && data.length === 1){
+                  		data = data[0];
+                  	}else{
+                  		throw $resourceMinErr('badcfg',
+		                      'Error in resource configuration for action `{0}`. Expected response to ' +
+		                      'contain an {1} but got an {2} (Request: {3} {4})', name, (!isSingleElement && action.isArray) ? 'array' : 'object',
+		                      angular.isArray(data) ? 'array' : 'object', httpConfig.method, httpConfig.url);		
+                  	}
                   }
 
                   if(angular.isArray(data) && forceSingleElement){
