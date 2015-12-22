@@ -6,7 +6,7 @@
     "Raphael ATALLAH <utfc243f@randomail.net>"
   ],
   "description": "Fluent OData queries from Angular's Resources",
-  "main": "build/odataresources.min.js",
+  "main": "build/odataresources.js",
   "moduleType": [
     "globals"
   ],
